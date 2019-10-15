@@ -162,18 +162,18 @@ activedirectory.userSearchFilter: &lt;LDAP userSearchFilter pattern&gt;</pre>
         <p>ER lookup configurations define whether to enable querying towards Event Repository or not. ER lookup configurations are enabled by configuring below property in configuration file. </p>
             <pre>
             event-repository.enabled : &lt;true | false&gt;</pre>
-            <p><strong>NOTE: </strong>Allowed value for <em>event-repository-lookup.enabled</em> is <em>true/false</em>.If the value is not one of this the service will be terminated. </p>
-            <p>If <em>event-repository-lookup.enabled</em> is false then REMReM Generate will not Lookup ER data. Refer below snippet for instance,</p>
+            <p><strong>NOTE: </strong>Allowed value for <em>event-repository.enabled</em> is <em>true/false</em>.If the value is not one of this the service will be terminated. </p>
+            <p>If <em>event-repository.enabled</em> is false then REMReM Generate will not Lookup ER data. Refer below snippet for instance,</p>
             <pre>
-            event-repository-lookup.enabled : false
+            event-repository.enabled : false
             event-repository.url     : &lt;ER URL for lookup&gt;</pre>
-        <p>If <em>event-repository-lookup.enabled</em> is true then Event Repository URL should be mandatory. </p>
+        <p>If <em>event-repository.enabled</em> is true then Event Repository URL should be mandatory. </p>
             <pre>
-            event-repository-lookup.enabled : true
+            event-repository.enabled : true
             event-repository.url     : &lt;ER URL for lookup&gt;</pre>
         <p><strong>NOTE: </strong>If Lookup configurations are enabled and EventRepository URL is not provided then the remrem service gets terminated.</p>
         <pre>
-            event-repository-lookup.enabled : true
+            event-repository.enabled : true
             event-repository.url     :</pre>
         <h2>
             <a id="usage" class="anchor" href="#usage" aria-hidden="true">
@@ -386,12 +386,12 @@ activedirectory.userSearchFilter: &lt;LDAP userSearchFilter pattern&gt;</pre>
 			"%lookup%": {
 			"eventType": "EiffelArtifactCreatedEvent",
 			"properties": [
-				{ “data.identifier": "some purl identifier defining the artifact" }]
+				{ “data.identity": "some purl identifier defining the artifact" }]
 					}
 				}]
 		</pre>
 		<p><h6>ER Query will look like:</h6></p>
-		<pre>https://<host>:<port>/eventrepository/events/?eventType=EiffelArtifactCreatedEvent&data.identifier=some purl identifier defining the artifact</pre>
+		<pre>https://localhost:8080/eventrepository/events/?meta.type=EiffelArtifactCreatedEvent&data.identity=some purl identifier defining the artifact</pre>
 		<h5> Examples for Lookups:</h5>
 		<h6> Example 1:</h6>
 		<pre>
@@ -422,7 +422,7 @@ activedirectory.userSearchFilter: &lt;LDAP userSearchFilter pattern&gt;</pre>
 			"links": [
 			"type": “CHANGE",​
 			"%lookup%": {​
-			"eventType": "EiffelSourceChangeCreatedEventEvent",​
+			"eventType": "EiffelSourceChangeCreatedEvent",​
 			"properties": [
 					{​"data.gitIdentifier.repoUri": "https://gerrit.ericsson.se"​}
 					]​
